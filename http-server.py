@@ -23,7 +23,9 @@ def server_up():
     result = sock.connect_ex(('', PORT))
     if result == 0:
         return True, "200"
+    else:
+        return False, "Something is broken"
 
 health.add_check(server_up())
 
-app.add_url_rule("/health", "healthcheck", view_func=lambda: health.run())
+app.add_url_rule("/healthcheck", "healthcheck", view_func=lambda: health.run())
