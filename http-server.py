@@ -1,30 +1,24 @@
-import http.server
-import socketserver
-# import socket
 from flask import Flask
 from healthcheck import HealthCheck
-
-PORT = 8080
-# Handler that just serves a static file from the current directory and any of its subdirectories
-# SimpleHTTPRequestHandler will look for an index.html
-Handler = http.server.SimpleHTTPRequestHandler
-
-# TCP address is passed as a tuple of IP (listening to all IPs) and port (which is 8080)
-with socketserver.TCPServer(('', PORT), Handler) as httpd:
-    httpd.serve_forever()
+import socket
 
 app = Flask(__name__)
 
+@app.route('/')
+def hello_python():
+    return 'Hello, Python!'
+
 health = HealthCheck()
 
+@app.route('/health')
 def server_up():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # connect_ex will return the error indicator 0 if the operation succeeded
-    result = sock.connect_ex(('', PORT))
+    result = sock.connect_ex(('', 5000))
     if result == 0:
-        return True, "200"
+        return "200"
     else:
-        return False, "Something is broken"
+        return "Something is broken"
 
 health.add_check(server_up())
 
