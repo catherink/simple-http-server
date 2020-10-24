@@ -23,3 +23,9 @@ def server_up():
 health.add_check(server_up())
 
 app.add_url_rule("/healthcheck", "healthcheck", view_func=lambda: health.run())
+
+# Contrary to what is written in internet, host here defines where app is running
+# and not what it listens to (flask run --host=0.0.0.0 makes app listen to all IPs)
+# if __name__ == "__main__":
+#    app.run(host="0.0.0.0")
+
