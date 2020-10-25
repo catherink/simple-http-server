@@ -1,5 +1,8 @@
 # set base image (host OS)
-FROM python:3.6
+FROM ubuntu:18.04
+
+RUN apt update -y
+RUN apt install -y python3-pip
 
 # set the working directory in the container
 WORKDIR /simple-http-server
@@ -16,5 +19,6 @@ EXPOSE 5000
 # copy the content of the local src directory to the working directory
 COPY app/ .
 
-# command to run on container start
-CMD [ "python3", "./http-server.py", "--host=0.0.0.0"]
+ENTRYPOINT [ "python3" ]
+
+CMD [ "http-server.py" ]

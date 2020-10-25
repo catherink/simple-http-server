@@ -16,17 +16,14 @@ def server_up():
     # connect_ex will return the error indicator 0 if the operation succeeded
     result = sock.connect_ex(('', 5000))
     if result == 0:
-        return "200"
+        return '200'
     else:
-        return "Something is broken"
+        return 'Something is broken'
 
 health.add_check(server_up())
 
-app.add_url_rule("/healthcheck", "healthcheck", view_func=lambda: health.run())
+app.add_url_rule('/healthcheck', 'healthcheck', view_func=lambda: health.run())
 
-# Contrary to what is written in internet, host here defines where app is running
-# and not what it listens to (flask run --host=0.0.0.0 makes app listen to all IPs)
-# or I am wrong and something just doesn't work here...
-# if __name__ == "__main__":
-#    app.run(host="0.0.0.0")
-
+# lines below will not work with the new Flask version, consider using "export FLASK_RUN_HOST=0.0.0.0" before "flask run" command or pass host like this "flask run --host=0.0.0.0" 
+# if __name__ == '__main__':
+#    app.run(host='0.0.0.0', port=5000)
