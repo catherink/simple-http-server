@@ -1,2 +1,2 @@
-# Work is still in progress. For now server is running here: http://104.45.92.95:5000/ and here is healthcheck: http://104.45.92.95:5000/health
-# Running with Docker compose at the moment. Still need to create Helm package and add monitoring tool.
+# Azure stopped my machine because of some misunderstandings of what is included in free tier and what is not (Linux machine was, but that's what support doesn't understand so far), had to move to AWS, now service is running here (with Docker compose): http://13.53.172.65:5000/ and here is healthcheck: http://13.53.172.65:5000/health
+# Last time on Azure machine was having fun with Minikube - service wasn't accessible even locally, "no route to host". Now will need to install Minikube again on the new machine and continue fixing non-working things.
