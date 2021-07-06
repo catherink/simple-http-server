@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 services:
         http-server:
                 image: catherink/http-server:v1.2

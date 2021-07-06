@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: http-server
+  name: http-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: http-server
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: http-server
+    spec:
+      containers:
+      - image: catherink/http-server:v1.2
+        imagePullPolicy: ""
+        name: http-server
+        ports:
+        - containerPort: 5000
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
